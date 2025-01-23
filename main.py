@@ -59,9 +59,9 @@ def sync_website_content(token, source_repo, source_folder, source_ref, translat
             break
     g.close()
 
-    cmds = ['git', 'diff', f'{pr_branch}..{branch_name}']
-    out = check_output(cmds)
-    print(out)
+    # cmds = ['git', 'diff', f'{pr_branch}..{branch_name}']
+    # out = check_output(cmds)
+    # print(out)
 
     # git add .
     # # Only proceed to commit if there are changes
