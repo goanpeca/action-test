@@ -1,0 +1,15 @@
+# JS stuff
+.nodeenv
+node_modules
+
+# Python stuff
+.nox
+/build
+/dist
+__pycache__
+
+# Coverage stuff
+.coverage
+htmlcov
+
+.DS_Store

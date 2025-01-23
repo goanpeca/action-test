@@ -1,0 +1,16 @@
+name: "Update Language Source"
+description: "Update Source files for the scientific python project"
+author: "@goanpeca"
+inputs:
+  source-path:
+    description: "Source path"
+    required: true
+  source-path:
+    description: "Destination path"
+    required: true
+outputs:
+  todo:
+    description: "TODO"
+runs:
+  using: "docker"
+  image: "Dockerfile"
