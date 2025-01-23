@@ -13,7 +13,7 @@ def set_github_action_output(output_name, output_value):
     f.close()    
 
 
-def sync_website_content(source_repo, source_folder, source_ref, translations_repo, translations_folder, translations_ref):
+def sync_website_content(token, source_repo, source_folder, source_ref, translations_repo, translations_folder, translations_ref):
     cmds = ['git', 'clone', f'https://github.com/{source_repo}.git']
     out = check_output(cmds)
     print(out)
@@ -26,7 +26,7 @@ def sync_website_content(source_repo, source_folder, source_ref, translations_re
     out = check_output(cmds)
     print(out)
 
-    branch_name = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+    branch_name = datetime.now().strftime('updates-%Y-%m-%d-%H-%M-%S')
     os.chdir(translations_repo.split('/')[1])
     
     cmds = ['git', 'checkout', '-b', branch_name]
@@ -41,7 +41,26 @@ def sync_website_content(source_repo, source_folder, source_ref, translations_re
     out = check_output(cmds)
     print(out)
 
-    out = check_output(['ls'])
+    cmds = ['git', 'add', '.']
+    out = check_output(cmds)
+    print(out)
+
+
+    auth = Auth.Token(token)
+    g = Github(auth=auth)
+
+    repo = g.get_repo(translations_repo)
+    pulls = repo.get_pulls(state='closed', sort='created', direction='desc')
+    pr_branch = None
+    for pr in pulls:
+        print(pr.number, pr.title)
+        pr_branch = pr.head.ref
+        if pr.title == "Update source content":
+            break
+    g.close()
+
+    cmds = ['git', 'diff', f'{pr_branch}..{branch_name} --staged']
+    out = check_output(cmds)
     print(out)
 
     # git add .
@@ -68,21 +87,7 @@ def main():
 
     # repository = os.environ["GITHUB_REPOSITORY"]
 
-    auth = Auth.Token(github_token)
-    g = Github(auth=auth)
-
-    repository = "Scientific-Python-Translations/pandas-translations"
-    repo = g.get_repo(translations_repo)
-    pulls = repo.get_pulls(state='open', sort='created')
-    for pr in pulls:
-        print(pr.number, pr.title)
-        if pr.title == "Update website content":
-            break
-    
-    sync_website_content(source_repo, source_folder, source_ref, translations_repo, translations_folder, translations_ref)
-
-    g.close()
-
+    sync_website_content(token, source_repo, source_folder, source_ref, translations_repo, translations_folder, translations_ref)
     set_github_action_output('todo', 'Hello world')
     print("TESTING")
 
