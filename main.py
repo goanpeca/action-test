@@ -14,8 +14,12 @@ def sync_website_content():
     # p = Popen("rsync -av --delete pandas/web/pandas/ pandas-translations/content/en/"
     # cd pandas-translations
     # git checkout -b ${{ env.BRANCH_NAME }}
-    # out = check_output(['git config --global user.email "actions@github.com"')
-    # print(out)
+    out = check_output(['git', 'clone', 'https://github.com/pandas-dev/pandas.git'])
+    print(out)
+    out = check_output(['ls'])
+    print(out)
+    out = check_output(['git', 'config', '--global', 'user.email', '"actions@github.com"'])
+    print(out)
     out = check_output(['git', 'config', '--global', 'user.name', '"GitHub Actions"'])
     print(out)
     # git add .
