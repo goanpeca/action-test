@@ -9,8 +9,8 @@ def set_github_action_output(output_name, output_value):
     f.close()    
 
 def main():
-    src = os.environ["source-path"]
-    dest = os.environ["destination-path"]
+    src = os.environ["INPUT_SOURCE"]
+    dest = os.environ["INPUT_DESTINATION"]
 
     set_github_action_output('todo', 'Hello world')
     print("TESTING")

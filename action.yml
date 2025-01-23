@@ -2,10 +2,10 @@ name: "Update Language Source"
 description: "Update Source files for the scientific python project"
 author: "@goanpeca"
 inputs:
-  source-path:
+  source:
     description: "Source path"
     required: true
-  destination-path:
+  destination:
     description: "Destination path"
     required: true
 outputs:
