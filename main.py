@@ -87,7 +87,7 @@ def main():
 
     # repository = os.environ["GITHUB_REPOSITORY"]
 
-    sync_website_content(token, source_repo, source_folder, source_ref, translations_repo, translations_folder, translations_ref)
+    sync_website_content(github_token, source_repo, source_folder, source_ref, translations_repo, translations_folder, translations_ref)
     set_github_action_output('todo', 'Hello world')
     print("TESTING")
 
