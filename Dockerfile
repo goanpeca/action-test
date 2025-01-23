@@ -6,4 +6,4 @@ RUN pip install requests pygithub
 
 COPY . .
 
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]
