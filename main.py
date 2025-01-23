@@ -50,12 +50,12 @@ def sync_website_content(source_repo, source_folder, source_ref, translations_re
 
 def main():
     github_token = os.environ["GITHUB_TOKEN"]
-    source_repo = os.environ["INPUT_SOURCE_REPO"]
-    source_folder = os.environ["INPUT_SOURCE_FOLDER"]
-    source_ref = os.environ["INPUT_SOURCE_REF"]
-    translations_repo = os.environ["INPUT_TRANSLATIONS_REPO"]
-    translations_folder = os.environ["INPUT_TRANSLATIONS_FOLDER"]
-    translations_ref = os.environ["INPUT_TRANSLATIONS_REF"]
+    source_repo = os.environ["INPUT_SOURCE-REPO"]
+    source_folder = os.environ["INPUT_SOURCE-FOLDER"]
+    source_ref = os.environ["INPUT_SOURCE-REF"]
+    translations_repo = os.environ["INPUT_TRANSLATIONS-REPO"]
+    translations_folder = os.environ["INPUT_TRANSLATIONS-FOLDER"]
+    translations_ref = os.environ["INPUT_TRANSLATIONS-REF"]
 
     # repository = os.environ["GITHUB_REPOSITORY"]
 
