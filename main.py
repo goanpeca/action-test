@@ -39,12 +39,15 @@ def main():
     token = os.environ["GITHUB_TOKEN"]
     src = os.environ["INPUT_SOURCE"]
     dest = os.environ["INPUT_DESTINATION"]
+    repository = os.environ["GITHUB_REPOSITORY"]
 
     auth = Auth.Token(token)
     g = Github(auth=auth)
 
-    repo = g.get_repo("PyGithub/PyGithub")
-    print(repo.name)
+    repo = g.get_repo(repository)
+    pulls = repo.get_pulls(state='open', sort='created')
+    for pr in pulls:
+        print(pr.number, pr.title)
 
     sync_website_content()
 
