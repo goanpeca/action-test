@@ -44,6 +44,7 @@ def main():
     auth = Auth.Token(token)
     g = Github(auth=auth)
 
+    print(repository)
     repo = g.get_repo(repository)
     pulls = repo.get_pulls(state='open', sort='created')
     for pr in pulls:
