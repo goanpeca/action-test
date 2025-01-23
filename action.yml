@@ -8,6 +8,9 @@ inputs:
   source-folder:
     description: "Source folder"
     default: ""
+  source-folder:
+    description: "Source folder"
+    default: ""
   source-ref:
     description: "Source reference"
     default: "main"

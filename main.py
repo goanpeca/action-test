@@ -1,6 +1,8 @@
 import os
-from github import Github, Auth
+from datetime import datetime
 from subprocess import check_output
+
+from github import Github, Auth
 
 
 # Set the output value by writing to the outputs in the Environment File, mimicking the behavior defined here:
@@ -12,24 +14,31 @@ def set_github_action_output(output_name, output_value):
 
 
 def sync_website_content(source_repo, source_folder, source_ref, translations_repo, translations_folder, translations_ref):
-    # p = Popen("rsync -av --delete pandas/web/pandas/ pandas-translations/content/en/"
-    # cd pandas-translations
-    # git checkout -b ${{ env.BRANCH_NAME }}
     cmds = ['git', 'clone', f'https://github.com/{source_repo}.git']
-    if source_folder:
-        cmds.append(source_folder)
     out = check_output(cmds)
     print(out)
 
     cmds = ['git', 'clone', f'https://github.com/{translations_repo}.git']
-    if translations_folder:
-        cmds.append(translations_folder)
     out = check_output(cmds)
-
-    out = check_output(['git', 'config', '--global', 'user.email', '"actions@github.com"'])
     print(out)
 
-    out = check_output(['git', 'config', '--global', 'user.name', '"GitHub Actions"'])
+    cmds = ['rsync', '-av', '--delete', source_folder, translations_folder]
+    out = check_output(cmds)
+    print(out)
+
+    branch_name = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+    os.chdir(translations_repo.split('/')[1])
+    
+    cmds = ['git', 'checkout', '-b', branch_name]
+    out = check_output(cmds)
+    print(out)
+
+    cmds = ['git', 'config', '--global', 'user.email', '"actions@github.com"']
+    out = check_output(cmds)
+    print(out)
+
+    cmds = ['git', 'config', '--global', 'user.name', '"GitHub Actions"']
+    out = check_output(cmds)
     print(out)
 
     out = check_output(['ls'])
