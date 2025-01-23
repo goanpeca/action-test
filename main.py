@@ -1,5 +1,5 @@
 import os
-import requests  # noqa We are just importing this to prove the dependency installed correctly
+# import requests  # noqa We are just importing this to prove the dependency installed correctly
 
 # Set the output value by writing to the outputs in the Environment File, mimicking the behavior defined here:
 #  https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter
@@ -13,8 +13,9 @@ def main():
 
     my_output = f'Hello {my_input}'
 
-    set_github_action_output('myOutput', my_output)
     set_github_action_output('todo', 'Hello world')
+
+    print("TESTING")
 
 
 if __name__ == "__main__":
