@@ -14,6 +14,7 @@ def main():
     my_output = f'Hello {my_input}'
 
     set_github_action_output('myOutput', my_output)
+    set_github_action_output('todo', 'Hello world')
 
 
 if __name__ == "__main__":
