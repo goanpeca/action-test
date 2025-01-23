@@ -5,7 +5,7 @@ inputs:
   source-path:
     description: "Source path"
     required: true
-  source-path:
+  destination-path:
     description: "Destination path"
     required: true
 outputs:
