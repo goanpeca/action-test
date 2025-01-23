@@ -2,12 +2,24 @@ name: "Update Language Source"
 description: "Update Source files for the scientific python project"
 author: "@goanpeca"
 inputs:
-  source:
-    description: "Source path"
+  source-repo:
+    description: "Source repository"
     required: true
-  destination:
-    description: "Destination path"
-    required: true
+  source-folder:
+    description: "Source folder"
+    default: ""
+  source-ref:
+    description: "Source reference"
+    default: "main"
+  translations-repo:
+    description: "Translations repository"
+    default: ""
+  translations-folder:
+    description: "Translations folder"
+    default: ""
+  translations-ref:
+    description: "Translations reference"
+    default: "main"
 outputs:
   todo:
     description: "TODO"

@@ -13,8 +13,12 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          source: "source"
-          destination: "destination"
+          source-repo: "pandas-dev/pandas"
+          source-folder: "pandas"
+          source-ref: "main"
+          translations-repo: "Scientific-Python-Translations/pandas-translations"
+          translations-folder: "pandas-translations"
+          translations-ref: "main"
 
       - name: Check outputs
         run: |
